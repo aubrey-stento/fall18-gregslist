@@ -19,7 +19,7 @@ export default class AutosController {
         </div>
       `
     })
-    document.getElementById('main-content').innerHTML = template
+    document.getElementById('auto-content').innerHTML = template
   }
 
   addAuto(event) {
