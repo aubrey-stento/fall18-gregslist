@@ -1,11 +1,18 @@
-import RealEstatesService from "./real-estates-service.js";
+import realEstatesService from "./real-estates-service.js";
+import Job from "../../models/job.js";
 
-let _realEstateService = new RealEstatesService()
+let _realEstateService = new realEstatesService()
 
 export default class RealEstatesController {
-  showRealEstates() {
-    let realEstates = _realEstateService.getRealEstate()
-    let template = `<form onsubmit="app.controllers.realEstatesController.addRealEstate(event)">
+
+  constructor() {
+    _realEstateService.getrealEstates(this.showrealEstates)
+  }
+  showrealEstates() {
+
+    let realEstates = _realEstateService.realEstates
+
+    let formTemplate = `<form onsubmit="app.controllers.realEstatesController.addrealEstate(event)">
         <div class="form-group">
           <label for="bedrooms">Bedrooms:</label>
           <input type="number" name="bedrooms" />
@@ -13,59 +20,57 @@ export default class RealEstatesController {
         <div class="form-group">
           <label for="bathrooms">Bathrooms:</label>
           <input type="number" name="bathrooms" />
-        </div>
+          </div>
+          <div class="form-group">
+            <label for="imgUrl">Image:</label>
+            <input type="url" name="imgUrl" />
+          </div>
+          <div class="form-group">
+            <label for="levels">Levels:</label>
+            <input type="number" name="levels" />
+          </div>
+          <div class="form-group">
+            <label for="year">Year:</label>
+            <input type="number" name="year" />
+          </div>
         <div class="form-group">
           <label for="price">Price:</label>
           <input type="number" name="price" />
-        </div>
-        <div class="form-group">
-          <label for="name">Name:</label>
-          <input type="text" name="name" />
-        </div>
-        <div class="form-group">
-          <label for="phone">Phone:</label>
-          <input type="number" name="phone" />
-        </div>
+          </div>
         <div class="form-group">
           <label for="description">Description:</label>
           <textarea type="text" name="description"></textarea>
-        </div>
-        <div class="form-group">
-          <label for="img">Image:</label>
-          <input type="url" name="img" />
         </div>
 
         <button type="submit">Add Real Estate</button>
 
       </form>
 `
+    let realEstatesTemplate = ''
     realEstates.forEach(realEstate => {
-      template += `
-      <div class="col-card">
-        <img src = "${realEstate.img}" >
-        <h5> Bedrooms: ${realEstate.bedrooms} - Bathrooms: ${realEstate.bathrooms}</h5>
-        <p> Price: ${realEstate.price}</p>
-        <p> Contact: ${realEstate.name} - ${realEstate.phone}</p>
-      </div>
-      `
+      realEstatesTemplate += realEstate.getrealEstateHTML()
     })
-    document.getElementById('main-content').innerHTML = template;
+    document.getElementById('form-content').innerHTML = formTemplate
+    document.getElementById('main-content').innerHTML = realEstatesTemplate
+
   }
-  addRealEstate(event) {
+  addrealEstate(event) {
     event.preventDefault();
     let form = event.target
     let formData = {
       bedrooms: form.bedrooms.value,
       bathrooms: form.bathrooms.value,
+      imgUrl: form.imgUrl.value,
+      levels: form.levels.value,
+      years: form.years.value,
       price: form.price.value,
-      name: form.name.value,
-      phone: form.phone.value,
-      description: form.description.value,
-      img: form.img.value
+      description: form.description.value
     }
-    _realEstateService.addRealEstate(formData)
-    this.showRealEstates()
-    form.reset()
 
+    _realEstateService.addrealEstate(formData, this.showrealEstates)
+    form.reset()
+  }
+  destroyrealEstate(id) {
+    _realEstateService.destroyrealEstate(id, this.showrealEstates)
   }
 }

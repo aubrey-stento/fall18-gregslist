@@ -10,27 +10,40 @@ export default class AutosController {
   }
   showAutos() {
     let autos = _autosService.autos
-    let template = ""
-    autos.forEach(auto => {
-      template += `
-        <div class="col-sm-4 my-1 card">
-        <div class="">
-          <img class="card-img-top" src="${auto.imgUrl}">
-          <div class="card-body">
-          <h5 class="card-title">>${auto.make} - ${auto.model} ${auto.year}</h5>
-          <div class="card-text>
-          <p>Price: ${auto.price}</p>
-          <p>${auto.description}</p>
-          <div>
-          <i class="fa fa-fw fa-trash action muted" onclick="app.controllers.autosController.destroyAuto('${auto._id}')"></i>
+    let formTemplate = `
+       <form onsubmit="app.controllers.autosController.addAuto(event)" >
+        <div class="form-group">
+          <label for="make">Make:</label>
+          <input type="text" name="make" />
         </div>
-                </div>
-                        </div>
-                                </div>
-                                        </div>
-      `
+        <div class="form-group">
+          <label for="model">Model:</label>
+          <input type="text" name="model" />
+        </div>
+        <div class="form-group">
+          <label for="year">Year:</label>
+          <input type="number" name="year" />
+        </div>
+        <div class="form-group">
+          <label for="price">Price:</label>
+          <input type="number" name="price" />
+        </div>
+        <div class="form-group">
+          <label for="imgUrl">Image:</label>
+          <input type="url" name="imgUrl" />
+        </div>
+        <div class="form-group">
+          <label for="description">Description:</label>
+          <input type="text" name="description" />
+        </div>
+        <button type="submit">Add Auto</button>
+    </form >`
+    let autosTemplate = ''
+    autos.forEach(auto => {
+      autosTemplate += auto.getAutoHTML()
     })
-    document.getElementById('main-content').innerHTML = template
+    document.getElementById('form-content').innerHTML = formTemplate
+    document.getElementById('main-content').innerHTML = autosTemplate
   }
 
   addAuto(event) {

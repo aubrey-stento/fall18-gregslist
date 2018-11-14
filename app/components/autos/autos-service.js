@@ -4,7 +4,7 @@ import Auto from "../../models/auto.js";
 let _api = axios.create({
   baseURL: "https://bcw-gregslist.herokuapp.com/api/cars"
 })
-/**@type {Array<Auto}*/
+/**@type {Array<Auto>} */
 let _autos = []
 
 function handleError(err) {

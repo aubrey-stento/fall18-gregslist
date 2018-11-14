@@ -16,125 +16,23 @@
   <div id="app">
     <div class="categories">
       <button class="btn btn-primary" onclick="app.controllers.autosController.showAutos()">Autos</button>
-      <button class="btn btn-primary" onclick="app.controllers.realEstatesController.showRealEstates()">Real Estate</button>
+      <button class="btn btn-primary" onclick="app.controllers.realEstatesController.showrealEstates()">Real Estate</button>
       <button class="btn btn-primary" onclick="app.controllers.jobsController.showJobs()">Jobs</button>
     </div>
 
     <div class="container-fluid">
-      <div class="row" id="main-content">
+      <div class="row" id="form-content">
         Choose a category to start posting stuff in
+      </div>
+      <div class="row" id="main-content">
+
       </div>
     </div>
 
   </div>
-  <div class="container">
-    <div class="row" id="main-content">
-      Enter all required fields to create car posting
-    </div>
 
-    <form onsubmit="app.controllers.autosController.addAuto(event)">
-      <div class="form-group">
-        <label for="make">Make</label>
-        <input type="text" name="make" />
-      </div>
-      <div class="form-group">
-        <label for="model">Model:</label>
-        <input type="text" name="model" />
-      </div>
-      <div class="form-group">
-        <label for="year">Year:</label>
-        <input type="number" name="year" />
-      </div>
-      <div class="form-group">
-        <label for="PRICE">Price:</label>
-        <input type="number" name="PRICE" />
-      </div>
-      <div class="form-group">
-        <label for="imgUrl">Image:</label>
-        <input type="url" name="imgUrl" />
-      </div>
-      <div class="form-group">
-        <label for="description">Description:</label>
-        <textarea type="text" name="description"></textarea>
-      </div>
-      <button type="submit">Add Auto</button>
-    </form>
-
-
-    <!-- <div class="container">
-      <div class="row" id="estate-content">
-        Enter all required fields to create real estate posting
-      </div> -->
-
-    <!-- <form onsubmit="app.controllers.realEstatesController.addRealEstate(event)">
-        <div class="form-group">
-          <label for="bedrooms">Bedrooms:</label>
-          <input type="number" name="bedrooms" />
-        </div>
-        <div class="form-group">
-          <label for="bathrooms">Bathrooms:</label>
-          <input type="number" name="bathrooms" />
-        </div>
-        <div class="form-group">
-          <label for="price">Price:</label>
-          <input type="number" name="price" />
-        </div>
-        <div class="form-group">
-          <label for="name">Name:</label>
-          <input type="text" name="name" />
-        </div>
-        <div class="form-group">
-          <label for="phone">Phone:</label>
-          <input type="number" name="phone" />
-        </div>
-        <div class="form-group">
-          <label for="description">Description:</label>
-          <textarea type="text" name="description"></textarea>
-        </div>
-        <div class="form-group">
-          <label for="img">Image:</label>
-          <input type="url" name="img" />
-        </div>
-
-        <button type="submit">Add Real Estate</button>
-
-      </form> -->
-
-
-
-    <!-- <div class="container">
-    <div class="row" id="job-content">
-      Enter all required fields to create job posting
-    </div> -->
-
-    <!-- <form onsubmit="app.controllers.jobsController.addJob(event)">
-      <div class="form-group">
-        <label for="company">Company:</label>
-        <input type="text" name="company" />
-      </div>
-      <div class="form-group">
-        <label for="position">Position:</label>
-        <input type="text" name="position" />
-      </div>
-      <div class="form-group">
-        <label for="location">Location:</label>
-        <input type="text" name="location" />
-      </div>
-      <div class="form-group">
-        <label for="duties">Duties:</label>
-        <input type="text" name="duties" />
-      </div>
-      <div class="form-group">
-        <label for="pay">Pay:</label>
-        <input type="number" name="pay" />
-      </div>
-      <button type="submit">Add Job</button>
-    </form> -->
-
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
-    <script src="app/main.js" type="module"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+  <script src="app/main.js" type="module"></script>
 
 
 </body>

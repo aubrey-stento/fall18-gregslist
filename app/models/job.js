@@ -1,19 +1,32 @@
 export default class Job {
   constructor(data) {
-    if (!data.company || !data.position || !data.location || !data.duties || !data.pay) {
-      throw new Error("Missing Data Field")
+
+    if (!data.hasOwnProperty('_id') || !data.company || !data.jobTitle || !data.hours || !data.hasOwnProperty('rate')) {
+      throw new Error("Missing Job Data Field")
     }
+    this._id = data._id
     this.company = data.company
-    this.position = data.position
-    this.location = data.location
-    this.duties = data.duties
-    this.pay = data.pay
+    this.jobTitle = data.jobTitle
+    this.hours = data.hours
+    this.rate = data.rate
+    this.description = data.description
   }
-  getTemplate() {
-    return `<div class="col card">
-      <h5>${this.company} - ${this.position}</h5>
-      <p>${this.location}</p>
-      <p>${this.duties} - ${this.pay}</p>
-    </div>`
+  getJobHTML() {
+    return `<div class="col-sm-4 my-1 card">
+    <div class="">
+    <div class="card-body">
+    <h5 class="card-title">${this.company} - ${this.jobTitle}</h5>
+    <div class="card-text">
+    <p>Hours: ${this.hours}</p>
+    <p>Rate: ${this.rate}</p>
+    <p>${this.description}</p>
+    <div>
+    <i class="fa fa-fw fa-trash action muted" onclick="app.controllers.jobsController.destroyJob('${this._id}')"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+`
   }
 }
