@@ -9,4 +9,11 @@ export default class Job {
     this.duties = data.duties
     this.pay = data.pay
   }
+  getTemplate() {
+    return `<div class="col card">
+      <h5>${this.company} - ${this.position}</h5>
+      <p>${this.location}</p>
+      <p>${this.duties} - ${this.pay}</p>
+    </div>`
+  }
 }

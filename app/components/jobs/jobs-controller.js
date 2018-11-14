@@ -30,16 +30,7 @@ export default class JobsController {
       <button type="submit">Add Job</button>
     </form>`
     jobs.forEach(job => {
-      template += `
-        <div class="col card">
-          <h5>${job.company} - ${job.position}</h5>
-          <p>${job.location}</p>
-          <p>${job.duties} - ${job.pay}</p>
-
-        </div>
-        `
-
-
+      template += job.getTemplate()
     })
     document.getElementById('main-content').innerHTML = template
 
